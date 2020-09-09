@@ -67,8 +67,16 @@ class DataParser(object):
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
 
-    input_file, output_file = sys.argv[1:3]
-    dp = DataParser.factory()
-    dp.parse(input_file, output_file)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('input_file', help='Path to the input (fixed width) file')
+    parser.add_argument('output_file', help='Path to save the output')
+    parser.add_argument('-d', dest='delimiter', default=',', help='Delimiter for parsing the file')
+    parser.add_argument('-s', dest='spec_file', help='Path to specification (json) file')
+    args = parser.parse_args()
+    if args.spec_file:
+        dp = DataParser.factory(spec_file=args.spec_file)
+    else:
+        dp = DataParser.factory(spec_file=SPEC_FILE)
+    dp.parse(args.input_file, args.output_file, delimiter=args.delimiter)
