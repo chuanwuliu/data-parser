@@ -15,7 +15,7 @@ Data parser to parse the fixed width file. The codebase includes three major par
    # Download the repo
    git clone https://github.com/chuanwuliu/data-parser.git
    ``` 
-   ### Interfaces
+   ### Parse a fixed width file
    * The main data parser function is defined in `dataparser.py`. To convert a fixed width `input_file` and save the result to `output_file`:
        ```bash
        python dataparser.py input_file output_file
@@ -41,7 +41,7 @@ Data parser to parse the fixed width file. The codebase includes three major par
       -d DELIMITER  Delimiter for parsing the file
       -s SPEC_FILE  Path to specification (json) file
    ```
-
+   
 ## Test Cases:
 Run the test cases
 ```bash
@@ -57,6 +57,11 @@ Following cases have been tested:
 In each case, the aumated parsed output is compared with a manually parsed output.  
 In above cases, fields only include letters, digits and pure whitespace character.
 Fields with more complicated whitespaces such as `\t` and `\r` have not been considered and tested.
+
+A helper function is built for generating some example files
+   ```bash
+   python generator.py
+   ```
 
 ## Contact:
 Charles Liu: dr.liuchuanwu@gmail.com
