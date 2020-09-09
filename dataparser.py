@@ -1,6 +1,7 @@
 """
 File parser.
 """
+
 import json
 
 SPEC_FILE = "spec.json"
