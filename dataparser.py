@@ -3,7 +3,6 @@ File parser.
 """
 import json
 
-
 SPEC_FILE = "spec.json"
 
 
@@ -47,3 +46,11 @@ class DataParser(object):
         with open(spec_file) as file:
             spec = json.load(file)
         return DataParser(spec)
+
+
+if __name__ == "__main__":
+    import sys
+
+    input_file, output_file = sys.argv[1:3]
+    dp = DataParser.factory()
+    dp.parse(input_file, output_file)
