@@ -4,10 +4,11 @@ Fix-width file generator
 
 import string
 import random
+from typing import List
 from dataparser import DataParser
 
 
-def random_string(k):
+def random_string(k: int) -> str:
     """
     Create a string of k random characters including letters, digits and whitespace.
     :param k: length of string
@@ -17,14 +18,20 @@ def random_string(k):
     return ''.join(random.choices(characters, k=k))
 
 
-def generate_line_full(offsets):
+def generate_line_full(offsets: List[int]) -> str:
+    """
+    Generate a line with all fields filled up with characters.
+    """
     line = ""
     for k in offsets:
         line += random_string(k)
     return line
 
 
-def generate_line_left(offsets):
+def generate_line_left(offsets: List[int]) -> str:
+    """
+    Generate a line with all fields aligned left.
+    """
     line = ""
     for k in offsets:
         k1 = random.randint(a=0, b=k)
@@ -33,7 +40,10 @@ def generate_line_left(offsets):
     return line
 
 
-def generate_line_right(offsets):
+def generate_line_right(offsets: List[int]) -> str:
+    """
+    Generate a line with all fields aligned left.
+    """
     line = ""
     for k in offsets:
         k1 = random.randint(a=0, b=k)
@@ -42,11 +52,11 @@ def generate_line_right(offsets):
     return line
 
 
-def generate_text(n, align='full'):
+def generate_text(n: int, align: str = 'full') -> str:
     """
     Generate a fixed width text of n lines.
     :param n: number of lines of the text
-    :param align: alignment style ie. "full", "left" or "right"
+    :param align: alignment style ie. "full", "left" or "right", default full
     :return: generated text
     """
     f = {
@@ -63,7 +73,7 @@ def generate_text(n, align='full'):
             if align == "right":
                 text += ' ' * (width - len(name)) + name
             else:
-                text += name  + ' ' * (width - len(name))
+                text += name + ' ' * (width - len(name))
         text += '\n'
     for i in range(n - 1):
         text += f(dp.offsets) + '\n'
