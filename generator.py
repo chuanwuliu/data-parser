@@ -85,11 +85,11 @@ def generate_text(n: int, align: str = 'full') -> str:
 # Three files of different alignment styles will be generated in the tests folder.
 if __name__ == "__main__":
     text = generate_text(n=5, align='full')
-    with open('tests/temp1.txt', 'w') as file:
+    with open('tests/_temp1.txt', 'w') as file:
         file.write(text)
     text = generate_text(n=5, align='left')
-    with open('tests/temp2.txt', 'w') as file:
+    with open('tests/_temp2.txt', 'w') as file:
         file.write(text)
     text = generate_text(n=5, align='right')
-    with open('tests/temp3.txt', 'w') as file:
+    with open('tests/_temp3.txt', 'w') as file:
         file.write(text)
