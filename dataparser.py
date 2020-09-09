@@ -28,24 +28,19 @@ class DataParser(object):
         return bool(self._spec["IncludeHeader"])
 
     def parse(self, input_file, output_file, delimiter=','):
-        f_input = open(input_file, 'r')
-        f_output = open(output_file, 'w')
-        while(True):
-            line = f_input.readline()
-            if line == '':
-                break
-            else:
-                filed_list = []
-                j = 0
-                for k in self.offsets:
-                    filed_list += [line[j: j+k].strip()]
-                    j += k
-                line_parsed = delimiter.join(filed_list)
-                line_parsed += '\n'
-                f_output.write(line_parsed)
-        f_input.close()
-        f_output.close()
-
+        with open(input_file, 'r') as f:
+            input_lines = f.readlines()
+        parsed_text = ""
+        for line in input_lines:
+            j = 0
+            fields = []
+            for k in self.offsets:
+                fields += [line[j: j + k].strip()]
+                j += k
+            parsed_text += delimiter.join(fields) + '\n'
+        parsed_text = parsed_text[:-1]
+        with open(output_file, 'w') as f:
+            f.write(parsed_text)
 
     @staticmethod
     def factory(spec_file=SPEC_FILE):
