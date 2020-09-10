@@ -3,7 +3,7 @@
 Data parser to parse the fixed width file. The codebase includes three major parts:
  1. `dataparser.py` defines the main parser class
  2. `generator.py` defines the methods that are used to generate the example fixed width files
- 3. `testcases.py` includes all the test cases and test data are included in the directory `tests`  
+ 3. `testcases.py` includes all the test cases. Test data are included in the directory `tests`  
 
 ## Run the Code
    ### Prerequisites:
@@ -24,7 +24,7 @@ Data parser to parse the fixed width file. The codebase includes three major par
        ```bash
        python dataparser.py tests/test_input1.txt tests/_temp_output2.csv
        ```
-   * The default delimiter is comma. You can customised the delimiter using the `-d` argument. For example parser with `@`
+   * The default delimiter is comma. You can customised the delimiter using the `-d` argument. For example, parsing with `@`
        ```bash
        python dataparser.py tests/test_input1.txt tests/_temp_output2.csv --d @
        ```
@@ -54,11 +54,12 @@ Following cases have been tested:
   * Parse input file with right aligned fields and blank fields
   * Parse file with all blank fields
 
-In each case, the aumated parsed output is compared with a manually parsed output.  
-In above cases, fields only include letters, digits and pure whitespace character.
+In each case, the sample input is parsed and its sample output is compared with a manually parsed output.
+
+Currently, fields in the fixed width file only include letters, digits and pure whitespace character.
 Fields with more complicated whitespaces such as `\t` and `\r` have not been considered and tested.
 
-A helper function is built for generating some example files
+A helper function has been built for generating some example files
    ```bash
    python generator.py
    ```
